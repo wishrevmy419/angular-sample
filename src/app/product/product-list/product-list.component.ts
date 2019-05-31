@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../shared/models/product';
+import { ProductService } from '../../shared/services/product.service';
 
 @Component({
   selector: 'app-product-list',
@@ -9,16 +10,13 @@ import { Product } from '../../shared/models/product';
 export class ProductListComponent implements OnInit {
   products: Product[] = null;
 
-  constructor() { }
+  constructor(
+    private productService: ProductService,
+  ) { }
 
   ngOnInit() {
-    setTimeout(() => {
-      this.products = [
-        new Product(1, 'テストテキスト1', 1000, 'これはテストテキスト１です。'),
-        new Product(2, 'サプライズ　サプライズ', 1400, 'なんとサプライズ'),
-        new Product(3, '真夏のテディベア', 3000, 'なんというテディベア...'),
-      ];
-    }, 3000);
+    this.productService.list().subscribe((products: Product[]) => {
+      this.products = products;
+    });
   }
-
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../shared/models/product';
+import { ProductService } from '../../shared/services/product.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -9,10 +10,13 @@ import { Product } from '../../shared/models/product';
 export class ProductDetailComponent implements OnInit {
   product: Product;
 
-  constructor() { }
+  constructor(
+    private productService: ProductService,
+  ) { }
 
   ngOnInit() {
-    this.product = new Product(1, 'テストテキスト１', 1000, 'これはテストテキスト1です。');
+    this.productService.get(2).subscribe((product: Product) => {
+      this.product = product;
+    });
   }
-
 }
