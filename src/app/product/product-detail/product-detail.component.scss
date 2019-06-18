@@ -21,7 +21,7 @@
             padding: 16px 8px;
 
             &:nth-child(n+2) {
-                border-tp: 1px solid #D9DBDE;
+                border-top: 1px solid #D9DBDE;
             }
 
             .label {
@@ -32,7 +32,11 @@
 
     .footer {
         display: flex;
-        justify-content: ce;
+        justify-content: center;
         margin-top: 20px;
+
+        .button {
+            margin: 0 20px;
+        }
     }
 }
